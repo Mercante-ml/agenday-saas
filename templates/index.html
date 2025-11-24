@@ -3,140 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenday - O Futuro da sua Barbearia</title>
-    <meta name="description" content="O sistema de gestão definitivo para barbearias modernas. Agendamento via Chatbot, gestão financeira e marketing automático.">
+    <title>Agenday - A Revolução da sua Barbearia</title>
+    <meta name="description" content="Entre na lista de espera do sistema de gestão mais exclusivo para barbearias.">
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
     <link rel="icon" href="https://ui-avatars.com/api/?name=Agenday&background=3B82F6&color=fff&rounded=true&bold=true&format=png">
 
     <style>
-        /* --- CSS CRÍTICO (Tudo num arquivo só para facilitar o deploy) --- */
         :root {
-            --bg-dark: #0F172A;
+            --bg-dark: #020617; /* Azul quase preto */
             --primary: #3B82F6;
-            --purple: #8B5CF6;
-            --gradient: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+            --accent: #8B5CF6;
+            --gold: #F59E0B;
             --text-white: #F8FAFC;
             --text-gray: #94A3B8;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-white); overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-white); overflow-x: hidden; height: 100vh; display: flex; flex-direction: column; }
+
+        /* BACKGROUND ANIMADO */
+        .bg-glow {
+            position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(0,0,0,0) 70%);
+            top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: -1; animation: pulseGlow 8s infinite alternate;
+        }
+        @keyframes pulseGlow { 0% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); } }
 
         /* HEADER */
-        header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 5%; position: absolute; width: 100%; top: 0; z-index: 10;
-        }
-        
-        /* MARCA AGENDAY */
-        .brand-agenday {
-            font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.5rem;
-            letter-spacing: -1px; color: white; display: flex; align-items: center; gap: 10px; text-decoration: none;
-        }
-        .brand-agenday .highlight { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .logo-icon {
-            width: 35px; height: 35px; background: var(--gradient); border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); font-size: 20px; color: white; font-weight: 900;
-        }
+        header { padding: 30px 5%; display: flex; justify-content: space-between; align-items: center; }
+        .brand-agenday { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.8rem; letter-spacing: -1px; color: white; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); font-size: 24px; color: white; font-weight: 900; }
+        .brand-text span { background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* BOTÃO LOGIN (Topo) */
-        .btn-login {
-            color: var(--text-white); text-decoration: none; font-weight: 600; border: 1px solid rgba(255,255,255,0.2);
-            padding: 8px 20px; border-radius: 50px; transition: 0.3s; font-size: 0.9rem;
-        }
-        .btn-login:hover { background: rgba(255,255,255,0.1); border-color: white; }
+        /* CONTEÚDO PRINCIPAL */
+        main { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; position: relative; z-index: 1; }
 
-        /* HERO SECTION */
-        .hero {
-            height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; padding: 0 20px; position: relative;
-            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15) 0%, rgba(15, 23, 42, 0) 70%);
+        .exclusive-tag {
+            background: rgba(245, 158, 11, 0.1); color: var(--gold); border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 8px 20px; border-radius: 50px; font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+            margin-bottom: 20px; animation: fadeIn 1s ease-out; display: inline-flex; align-items: center; gap: 8px;
         }
-
-        .badge-new {
-            background: rgba(59, 130, 246, 0.1); color: #3B82F6; border: 1px solid rgba(59, 130, 246, 0.3);
-            padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 20px;
-            text-transform: uppercase; letter-spacing: 1px; animation: fadeIn 1s ease-out;
-        }
+        .dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; animation: blink 2s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
         h1 {
-            font-family: 'Montserrat', sans-serif; font-size: 3.5rem; font-weight: 900; line-height: 1.1;
-            margin-bottom: 20px; max-width: 900px;
-            background: linear-gradient(to bottom, #ffffff 0%, #94a3b8 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-family: 'Montserrat', sans-serif; font-size: 3.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; max-width: 800px;
+            background: linear-gradient(to bottom, #ffffff 0%, #cbd5e1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             animation: slideUp 0.8s ease-out;
         }
 
-        p.subtitle {
-            color: var(--text-gray); font-size: 1.1rem; max-width: 600px; margin-bottom: 40px; line-height: 1.6;
-            animation: slideUp 1s ease-out;
+        p.lead {
+            color: var(--text-gray); font-size: 1.2rem; max-width: 600px; margin-bottom: 40px; line-height: 1.6;
+            animation: slideUp 1s ease-out 0.2s backwards;
         }
 
-        .cta-group { display: flex; gap: 15px; animation: slideUp 1.2s ease-out; flex-wrap: wrap; justify-content: center; }
-
-        .btn-primary {
-            background: var(--gradient); color: white; padding: 15px 35px; border-radius: 50px;
-            text-decoration: none; font-weight: bold; font-size: 1.1rem; box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
-            transition: transform 0.2s;
+        /* FORMULÁRIO DE WAITLIST */
+        .waitlist-form {
+            display: flex; gap: 10px; background: rgba(255, 255, 255, 0.05); padding: 8px; border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); width: 100%; max-width: 450px;
+            animation: slideUp 1s ease-out 0.4s backwards; transition: 0.3s;
         }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(59, 130, 246, 0.5); }
+        .waitlist-form:focus-within { border-color: var(--primary); box-shadow: 0 0 30px rgba(59, 130, 246, 0.2); }
 
-        .btn-secondary {
-            background: transparent; color: white; padding: 15px 35px; border-radius: 50px;
-            text-decoration: none; font-weight: bold; font-size: 1.1rem; border: 1px solid rgba(255,255,255,0.2);
-            transition: 0.2s;
+        input[type="email"] {
+            flex: 1; background: transparent; border: none; color: white; padding: 15px 20px; font-size: 1rem; outline: none;
         }
-        .btn-secondary:hover { background: rgba(255,255,255,0.05); }
-
-        footer {
-            position: absolute; bottom: 20px; color: rgba(255,255,255,0.2); font-size: 0.8rem; width: 100%; text-align: center;
+        
+        button.btn-join {
+            background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; border: none;
+            padding: 15px 30px; border-radius: 40px; font-weight: 700; cursor: pointer; transition: 0.3s; white-space: nowrap;
         }
+        button.btn-join:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
 
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        /* CONTADOR DE VAGAS */
+        .spots-counter {
+            margin-top: 20px; font-size: 0.9rem; color: #64748b; display: flex; align-items: center; gap: 5px;
+            animation: fadeIn 1s ease-out 0.6s backwards;
+        }
+        .spots-counter strong { color: var(--text-white); }
 
+        /* RODAPÉ */
+        footer { padding: 20px; text-align: center; color: rgba(255,255,255,0.2); font-size: 0.8rem; }
+
+        /* MEDIA QUERY */
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .cta-group { width: 100%; max-width: 300px; }
-            .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+            h1 { font-size: 2.2rem; }
+            .waitlist-form { flex-direction: column; border-radius: 20px; background: transparent; border: none; padding: 0; }
+            input[type="email"] { background: rgba(255,255,255,0.05); border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 10px; text-align: center; }
+            button.btn-join { width: 100%; border-radius: 10px; }
         }
     </style>
 </head>
 <body>
 
+    <div class="bg-glow"></div>
+
     <header>
         <a href="#" class="brand-agenday">
             <div class="logo-icon">A</div>
-            <span>Agen<span class="highlight">day</span></span>
+            <span class="brand-text">Agen<span>day</span></span>
         </a>
-        <a href="https://barbearia-mf4q.onrender.com/accounts/login/" class="btn-login">Login</a>
+        <a href="https://barbearia-mf4q.onrender.com/accounts/login/" style="color: rgba(255,255,255,0.3); text-decoration: none; font-size: 0.8rem;">Acesso Restrito</a>
     </header>
 
-    <section class="hero">
-        <div class="badge-new">🚀 Em Breve</div>
+    <main>
+        <div class="exclusive-tag">
+            <div class="dot"></div> Apenas 100 Vagas para o Beta
+        </div>
+
+        <h1>O segredo das barbearias<br>que lotam a agenda.</h1>
         
-        <h1>Domine sua agenda.<br>Fidelize seus clientes.</h1>
-        
-        <p class="subtitle">
-            O sistema de gestão definitivo para barbearias modernas. 
-            Agendamento via Chatbot, gestão financeira e marketing automático.
+        <p class="lead">
+            Chega de perder tempo no WhatsApp. Tenha um recepcionista virtual 24h, gestão financeira e marketing automático. 
+            <br><strong style="color: white;">O sistema que você estava esperando.</strong>
         </p>
 
-        <div class="cta-group">
-            <a href="https://barbearia-mf4q.onrender.com/registro/" class="btn-primary">Testar Agora</a>
-            
-            <a href="https://api.whatsapp.com/send?phone=55SEUNUMERO&text=Quero%20conhecer%20o%20Agenday" target="_blank" class="btn-secondary">
-                <i class="bi bi-whatsapp"></i> Falar com Consultor
-            </a>
+        <form class="waitlist-form" id="formWaitlist" onsubmit="joinWaitlist(event)">
+            <input type="email" id="emailInput" placeholder="Seu melhor e-mail..." required>
+            <button type="submit" class="btn-join">Quero Acesso VIP</button>
+        </form>
+
+        <div class="spots-counter">
+            🔥 Restam apenas <strong id="counter">14</strong> convites com 3 meses grátis.
         </div>
-    </section>
+    </main>
 
     <footer>
-        &copy; 2025 Agenday App. Todos os direitos reservados.
+        &copy; 2025 Agenday Inc. Tecnologia para Barbearias.
     </footer>
+
+    <script>
+        // 1. Simulação de Escassez (Diminui o número visualmente)
+        let spots = 14;
+        function decreaseSpots() {
+            if (spots > 3) {
+                spots--;
+                document.getElementById('counter').innerText = spots;
+                // Agenda a próxima queda aleatória
+                setTimeout(decreaseSpots, Math.random() * 5000 + 3000); // Entre 3 e 8 segundos
+            }
+        }
+        setTimeout(decreaseSpots, 4000);
+
+        // 2. Ação do Formulário (Captura e Redireciona)
+        function joinWaitlist(e) {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            const btn = document.querySelector('.btn-join');
+            
+            // Feedback Visual
+            btn.innerHTML = '<i class="bi bi-check-lg"></i> Garantindo Vaga...';
+            btn.style.background = '#10B981'; // Verde
+            
+            setTimeout(() => {
+                // REDIRECIONA PARA SEU WHATSAPP JÁ COM O EMAIL DA PESSOA
+                // Isso cria um lead quentíssimo pra você conversar.
+                const msg = `Olá! Quero garantir minha vaga VIP no Agenday. Meu e-mail é: ${email}`;
+                window.location.href = `https://api.whatsapp.com/send?phone=5562982501403&text=${encodeURIComponent(msg)}`;
+            }, 1500);
+        }
+    </script>
 
 </body>
 </html>
