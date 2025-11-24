@@ -26,7 +26,13 @@ SECRET_KEY = 'django-insecure-!99)a$%-^=nfz%)2z+5tt%5t-!e&yy#_449scqo$$ja96#fz8m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'agenday-landing.onrender.com', # O link que deu erro
+    'agendayapp.com',               # Seu domínio oficial
+    'www.agendayapp.com',
+    'localhost', 
+    '127.0.0.1'
+]
 
 
 # Application definition
